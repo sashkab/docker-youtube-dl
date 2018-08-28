@@ -9,7 +9,9 @@ RUN set -x \
   && apk add --no-cache ca-certificates ffmpeg openssl python3 \
   && pip3 install -U pip setuptools wheel youtube-dl
 
+COPY yt /yt
+
 WORKDIR /downloads
 
-ENTRYPOINT ["youtube-dl"]
+ENTRYPOINT ["/yt"]
 CMD ["--help"]
