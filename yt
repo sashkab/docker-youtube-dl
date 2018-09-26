@@ -58,8 +58,7 @@ class YDLLogger(object):
 
     def debug(self, msg):
         """Outputs debug messages"""
-        if not '[download]' in msg:
-            print("DEBUG: %s" % msg)
+        print("DEBUG: %s" % msg)
 
     def warning(self, msg):
         """Outputs warnings"""
@@ -68,6 +67,10 @@ class YDLLogger(object):
     def error(self, msg):
         """Outputs errors"""
         print("ERROR: %s" % msg)
+
+    def info(self, msg):
+        """Outputs errors"""
+        print("INFO: %s" % msg)
 
 
 def main(urls):
