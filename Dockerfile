@@ -1,7 +1,7 @@
 # Build:
 # docker build -t youtube-dl:latest .
 # Add alias:
-# alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/downloads youtube-dl:latest'
+# alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/downloads -t youtube-dl:latest'
 
 FROM alpine:3.8
 
