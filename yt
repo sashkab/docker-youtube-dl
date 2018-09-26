@@ -33,7 +33,7 @@ class YDLProgress(object):
 
     def print(self, progress):
         """print progress."""
-        if progress != self.progress:
+        if progress != self.previous_progress:
             print("Downloaded %.0f%%." % progress, end='\r', flush=True)
             self.previous_progress = progress
 
