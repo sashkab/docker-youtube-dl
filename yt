@@ -45,7 +45,7 @@ class YDLLogger(object):
 
     def debug(self, msg):
         """Outputs debug messages"""
-        ends = '\r' if '[download]' in msg else ''
+        ends = '\r' if '[download]' in msg else '\n'
         print("DEBUG: %s" % msg, end=ends, flush=True)
 
     def warning(self, msg):
