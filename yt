@@ -33,7 +33,7 @@ class YDLProgress(object):
 
     def print(self, progress):
         """print progress."""
-        if progress in [20, 40, 60, 80, 100]:
+        if progress % 5 == 0:
             if progress not in self.progress:
                 print("Downloaded %.0f%%." % progress)
             self.progress.append(progress)
@@ -81,6 +81,8 @@ def main(urls):
         'restrict-filenames': 'yes',
         'progress_hooks': [ydl_progress_hook],
         'logger': YDLLogger(),
+        'no-playlist': 'yes',
+        'ffmpeg-location':  '/usr/bin/ffmpeg',
     }
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
