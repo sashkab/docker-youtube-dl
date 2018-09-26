@@ -29,15 +29,13 @@ def clean_url(url):
 
 class YDLProgress(object):
     """YDL Progress class"""
-    progress = []
+    previous_progress = 0
 
     def print(self, progress):
         """print progress."""
-        if progress % 5 == 0:
-            if progress not in self.progress:
-                print("Downloaded %.0f%%." % progress)
-            self.progress.append(progress)
-
+        if progress != self.progress:
+            print("Downloaded %.0f%%." % progress, end='\r', flush=True)
+            self.previous_progress = progress
 
 ydl_progress = YDLProgress()
 
