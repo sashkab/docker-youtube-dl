@@ -60,7 +60,7 @@ class YDLLogger(object):
         """Outputs info messages"""
         print("INFO: %s" % msg)
 
-def main(urls):
+def main(urls, proxy=None):
     cleaned_urls = list([clean_url(u) for u in urls])
 
     ydl_opts = {
@@ -70,6 +70,10 @@ def main(urls):
         'no-playlist': 'yes',
         'ffmpeg-location':  '/usr/bin/ffmpeg',
     }
+
+    if proxy is not None:
+        ydl_opts['proxy'] = proxy
+
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download(cleaned_urls)
@@ -86,6 +90,7 @@ if __name__ == "__main__":
     parser.add_argument('--version', action='version',
                         version='%(prog)s ' + VERSION)
     parser.add_argument('url', nargs='+', help='url to parse')
+    parser.add_argument('--proxy', help='proxy server')
     args = parser.parse_args()
 
-    main(args.url)
+    main(args.url, args.proxy)
