@@ -1,0 +1,15 @@
+trigger:
+- master
+
+pr:
+- master
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+variables:
+  imageName: 'docker-youtubedl:$(build.buildId)'
+
+steps:
+- script: docker build --rm --no-cache -t $(imageName) -f Dockerfile .
+  displayName: 'docker build'
