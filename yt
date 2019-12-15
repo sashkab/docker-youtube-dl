@@ -14,7 +14,7 @@ TEST_URLS = [
     'https://rutube.ru/video/ghj/?pl_id=90ab&pl_type=source',
 ]
 
-VERSION = f"0.0.2+{youtube_dl.version.__version__}"
+VERSION = f"0.0.3+{youtube_dl.version.__version__}"
 
 
 def clean_url(url):
@@ -81,9 +81,9 @@ def main(urls, proxy=None, output=None):
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             rc = ydl.download(cleaned_urls)
-    except Exception as excp:
-        print("DEBUG: %s" % excp)
-        return False
+    except youtube_dl.YoutubeDLError as excp:
+        print("EXCEPTION: %s" % excp)
+        return 1
     else:
         print("DEBUG: No exception.")
         return rc
