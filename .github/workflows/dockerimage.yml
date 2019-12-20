@@ -1,11 +1,9 @@
-name: Docker Image CI
+name: Build youtube-dl image
 
 on: [push]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
