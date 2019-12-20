@@ -1,6 +1,14 @@
 name: Build youtube-dl image
 
-on: [push]
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+  schedule:
+    - cron: '0 12 * * 2,5'
 
 jobs:
   build:
