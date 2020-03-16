@@ -10,7 +10,7 @@ on:
   schedule:
     - cron: '0 12 * * 2,5'
 
-    env:
+env:
   IMAGE_NAME: docker-youtube-dl
 
 jobs:
