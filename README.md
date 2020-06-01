@@ -21,5 +21,5 @@ alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/downloads -t docker.pkg.
 Add a schedule to update via crontab:
 
 ```sh
-docker pull docker.pkg.github.com/sashkab/docker-youtube-dl/docker-youtube-dl:latest
+0 1 * * 0 docker pull docker.pkg.github.com/sashkab/docker-youtube-dl/docker-youtube-dl:latest
 ```
