@@ -1,6 +1,6 @@
 # youtube-dl in a docker
 
-[![Build Status](https://dev.azure.com/sashka1/sashkab/_apis/build/status/sashkab.docker-youtube-dl?branchName=master)](https://dev.azure.com/sashka1/sashkab/_build/latest?definitionId=6&branchName=master)
+![Build youtube-dl image](https://github.com/sashkab/docker-youtube-dl/workflows/Build%20youtube-dl%20image/badge.svg)
 
 ## Pull
 
