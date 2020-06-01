@@ -1,8 +1,3 @@
-# Pull image
-# docker pull docker.pkg.github.com/sashkab/docker-youtube-dl/docker-youtube-dl:latest
-# Add alias:
-# alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/downloads -t docker.pkg.github.com/sashkab/docker-youtube-dl/docker-youtube-dl:latest'
-
 FROM alpine:3.12
 
 RUN set -x \
