@@ -3,7 +3,7 @@
 # Add alias:
 # alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/downloads -t docker-youtube-dl:latest'
 
-FROM alpine:3.11
+FROM alpine:3.12.0
 
 RUN set -x \
   && apk add --no-cache ca-certificates ffmpeg openssl python3 \
