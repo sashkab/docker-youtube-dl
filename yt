@@ -7,13 +7,6 @@ import sys
 
 import youtube_dl
 
-
-TEST_URLS = [
-    'https://rutube.ru/video/abc/?pl_id=1234&pl_type=source',
-    'https://rutube.ru/video/def/?pl_id=5678&pl_type=source',
-    'https://rutube.ru/video/ghj/?pl_id=90ab&pl_type=source',
-]
-
 VERSION = f"0.0.6+{youtube_dl.version.__version__}"
 
 
