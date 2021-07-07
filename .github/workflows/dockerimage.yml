@@ -36,3 +36,9 @@ jobs:
         docker push $IMAGE_ID:$VERSION
         docker tag $IMAGE_ID:$VERSION $IMAGE_ID:latest
         docker push $IMAGE_ID:latest
+
+    - uses: actions/delete-package-versions@v1
+      with:
+        package-name: ${{ env.IMAGE_NAME }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        num-old-versions-to-delete: 1
