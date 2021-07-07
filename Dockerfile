@@ -1,8 +1,8 @@
-FROM alpine:3.13
+FROM alpine:3.14
 
 LABEL \
   maintainer="github@compuix.com" \
-  version="2021.01.14" \
+  version="2021.07.06" \
   description="youtube-dl in a container."
 
 
