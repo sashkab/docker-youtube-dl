@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""youtube-dl wrapper to cleanup some URLs"""
+"""yt_dlp wrapper to cleanup some URLs"""
 
 from urllib.parse import urlparse, urlunsplit
 import argparse
 import sys
 
-import youtube_dl
+import yt_dlp as ytdl
 
-VERSION = f"0.0.6+{youtube_dl.version.__version__}"
+VERSION = f"0.0.7+{ytdl.version.__version__}"
 
 
 def clean_url(url):
@@ -69,9 +69,9 @@ def main(args):
     }
 
     try:
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        with ytdl.YoutubeDL(ydl_opts) as ydl:
             rc = ydl.download(cleaned_urls)
-    except youtube_dl.utils.YoutubeDLError as excp:
+    except ytdl.utils.YoutubeDLError as excp:
         print("EXCEPTION: %s" % excp)
         return 1
     else:
@@ -85,7 +85,7 @@ if __name__ == "__main__":
                         version='%(prog)s ' + VERSION)
     parser.add_argument('url', nargs='+', help='url to parse')
     parser.add_argument('--proxy', help='proxy server')
-    parser.add_argument('-o', '--output', help="destination filename", default=youtube_dl.utils.DEFAULT_OUTTMPL)
+    parser.add_argument('-o', '--output', help="destination filename", default=ytdl.utils.DEFAULT_OUTTMPL)
     parser.add_argument('-v', '--verbose', action='store_true', help="verbose output")
     args = parser.parse_args()
     sys.exit(main(args))
