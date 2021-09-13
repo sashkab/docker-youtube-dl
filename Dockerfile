@@ -7,9 +7,10 @@ LABEL \
 
 
 RUN set -x \
-  && apk add --no-cache ca-certificates ffmpeg openssl python3 \
+  && apk add --no-cache ca-certificates ffmpeg openssl python3 py3-pycryptodome \
   && python3 -mensurepip \
-  && python3 -mpip install -U pip setuptools wheel yt-dlp
+  && python3 -mpip install -U pip setuptools wheel \
+  && python3 -mpip install yt-dlp
 
 COPY yt /yt
 
