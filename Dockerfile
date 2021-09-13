@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM alpine:3.14.2
 
 LABEL \
   maintainer="github@compuix.com" \
@@ -9,7 +9,7 @@ LABEL \
 RUN set -x \
   && apk add --no-cache ca-certificates ffmpeg openssl python3 \
   && python3 -mensurepip \
-  && python3 -mpip install -U pip setuptools wheel youtube-dl
+  && python3 -mpip install -U pip setuptools wheel yt-dlp
 
 COPY yt /yt
 
