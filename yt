@@ -7,7 +7,7 @@ import sys
 
 import yt_dlp as ytdl
 
-VERSION = f"0.0.7+{ytdl.version.__version__}"
+VERSION = f"0.0.7+{ytdl.version.__version__}({ytdl.__name__})"
 
 
 def clean_url(url):
