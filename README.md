@@ -5,7 +5,7 @@
 ## Pull
 
 ```sh
-docker pull docker.pkg.github.com/sashkab/docker-youtube-dl/docker-youtube-dl:latest
+docker pull docker pull ghcr.io/sashkab/docker-youtube-dl/docker-youtube-dl:latest
 ```
 
 ## Create alias
@@ -13,7 +13,7 @@ docker pull docker.pkg.github.com/sashkab/docker-youtube-dl/docker-youtube-dl:la
 Add alias into your `.bash_profile` or `.zshrc` files:
 
 ```sh
-alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/downloads -t docker.pkg.github.com/sashkab/docker-youtube-dl/docker-youtube-dl:latest'
+alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/downloads -t docker pull ghcr.io/sashkab/docker-youtube-dl/docker-youtube-dl:latest'
 ```
 
 ## Automatically update via crontab
@@ -21,5 +21,5 @@ alias yt='docker run --rm -u $(id -u):$(id -g) -v $PWD:/downloads -t docker.pkg.
 Add a schedule to update via crontab:
 
 ```sh
-0 1 * * 0 docker pull docker.pkg.github.com/sashkab/docker-youtube-dl/docker-youtube-dl:latest
+0 1 * * 0 docker pull docker pull ghcr.io/sashkab/docker-youtube-dl/docker-youtube-dl:latest
 ```
