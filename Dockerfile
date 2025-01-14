@@ -1,8 +1,8 @@
-FROM alpine:3.20.3
+FROM alpine:3.21.2
 
 LABEL \
     maintainer="github@compuix.com" \
-    version="2024.09.20" \
+    version="2025.01.14" \
     description="youtube-dl in a container."
 
 RUN set -x \
