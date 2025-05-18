@@ -12,26 +12,10 @@ VERSION = f"0.0.7+{ytdl.version.__version__}({ytdl.__name__})"
 
 def clean_url(url):
     """cleans rutube url"""
-
-    if not 'rutube.ru' in url:
+    parsed = urlparse(url)
+    if parsed.netloc != 'rutube.ru' and not parsed.netloc.endswith('.rutube.ru'):
         return url
-
-    segments = urlparse(url)
-
-    return urlunsplit(segments[:3] + ('', ''))
-
-
-def ydl_progress_hook(d):
-    if d['status'] == 'finished':
-        print('Download completed.')
-    elif d['status'] == 'downloading':
-        total = d.get('total_bytes', d.get('total_bytes_estimate', None))
-        downloaded = d['downloaded_bytes']
-        if total is not None:
-            progress = round(100 * (downloaded / total))
-            ydl_progress.print(progress)
-    else:
-        print('hook: status %s' % d['status'])
+    return urlunsplit(parsed[:3] + ('', ''))
 
 
 class YDLLogger(object):
@@ -53,6 +37,7 @@ class YDLLogger(object):
     def info(self, msg):
         """Outputs info messages"""
         print("INFO: %s" % msg)
+
 
 def main(args):
     cleaned_urls = list([clean_url(u) for u in args.url])
