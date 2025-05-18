@@ -27,10 +27,11 @@ jobs:
 
       - name: Push image
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository }}/$IMAGE_NAME
+          IMAGE_ID=ghcr.io/${{ github.repository }}
           VERSION=$(date "+%Y.%m.%d")
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
+          echo "${{ github.repository }}"
+          echo "IMAGE_ID=$IMAGE_ID"
+          echo "VERSION=$VERSION"
           docker tag image $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
           docker tag $IMAGE_ID:$VERSION $IMAGE_ID:latest
@@ -42,7 +43,7 @@ jobs:
     steps:
       - uses: actions/delete-package-versions@v5
         with:
-          package-name: "${{ github.event.repository.name }}/$IMAGE_NAME"
+          package-name: ${{ github.event.repository.name }}
           package-type: "container"
-          min-versions-to-keep: 5
+          min-versions-to-keep: 3
           token: ${{ secrets.GITHUB_TOKEN }}
