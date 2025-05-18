@@ -3,12 +3,12 @@ name: Build youtube-dl image
 on:
   push:
     branches:
-    - master
+      - master
   pull_request:
     branches:
-    - master
+      - master
   schedule:
-    - cron: '0 12 * * 2,5'
+    - cron: "0 12 * * 2,5"
 
 env:
   IMAGE_NAME: docker-youtube-dl
@@ -16,23 +16,34 @@ env:
 jobs:
   push:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-    - name: Log into registry
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-    - name: Build image
-      run: docker build . --file Dockerfile --tag image
+      - name: Build image
+        run: docker build . --file Dockerfile --tag image
 
-    - name: Push image
-      run: |
-        IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
-        VERSION=$(date "+%Y.%m.%d")
-        echo IMAGE_ID=$IMAGE_ID
-        echo VERSION=$VERSION
-        docker tag image $IMAGE_ID:$VERSION
-        docker push $IMAGE_ID:$VERSION
-        docker tag $IMAGE_ID:$VERSION $IMAGE_ID:latest
-        docker push $IMAGE_ID:latest
+      - name: Push image
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository }}
+          VERSION=$(date "+%Y.%m.%d")
+          echo "${{ github.repository }}"
+          echo "IMAGE_ID=$IMAGE_ID"
+          echo "VERSION=$VERSION"
+          docker tag image $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
+          docker tag $IMAGE_ID:$VERSION $IMAGE_ID:latest
+          docker push $IMAGE_ID:latest
+
+  cleanup:
+    needs: push
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/delete-package-versions@v5
+        with:
+          package-name: ${{ github.event.repository.name }}
+          package-type: "container"
+          min-versions-to-keep: 3
+          token: ${{ secrets.GITHUB_TOKEN }}
